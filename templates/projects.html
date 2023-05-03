@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% block body %}
+  <h1 class="text-center">Projects</h1>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for project in projects %}
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ project.project_name }}</h5>
+            <p class="card-text">{{ project.description }}</p>
+            <p class="card-text">Completed: {{ project.completed }}</p>
+            <p class="card-text"><small class="text-muted">Team: {{ project.team.team_name }}</small></p>
+            <form action="{{ url_for('delete_project', project_id=project.id) }}" method="post">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
